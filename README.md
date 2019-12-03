@@ -31,6 +31,8 @@ So we have below microservices
 https://start.spring.io/ is used to generate the projects
 
 ### 1. Config Server
+- Choose  ***Config server*** dependency
+- As an option add ***Actuator Dependency***, which returns the health check and different results of application state using a REST API
 
 
 
