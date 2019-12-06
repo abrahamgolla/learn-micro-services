@@ -84,4 +84,24 @@ https://start.spring.io/ is used to generate the projects
 - Istio’s Mixer component is responsible for policy controls and telemetry collection
 
 ## Kubernetes
-##### Kubernetes coordinates a highly available cluster of computers that are connected to work as a single unit
+- Kubernetes coordinates a highly available cluster of computers that are connected to work as a single unit
+- Kubernetes automates the distribution and scheduling of application containers across a cluster in a more efficient way
+   - A Kubernetes cluster consists of two types of resources:
+        - The **Master** coordinates the cluster
+        - **Nodes** are the workers that run the application
+
+![Cluster Diagram](https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg)
+
+- **Master** is responsible for managing the cluster, It helps in
+   - Scheduling Applications
+   - Maintaining Applications desired state
+   - Scaling applications
+   - Rolling out new updates
+   - When you deploy applications on Kubernetes, you tell the master to start the application containers. The master schedules the containers to run on the cluster's nodes. 
+- **node** is a VM or a physical machine that serves as a worker machine in K8s cluster
+  - Each node has a kublet, which is an agent for managing the node and communicating with the master
+  - A node should have tools for handling container operations, such as Docker or rkt
+  - The nodes communicate with the master using the Kubernetes API
+  
+***A Kubernetes cluster that handles production traffic should have a minimum of three nodes***
+
