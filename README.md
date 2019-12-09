@@ -105,3 +105,40 @@ https://start.spring.io/ is used to generate the projects
   
 ***A Kubernetes cluster that handles production traffic should have a minimum of three nodes***
 
+### Kubernetes Cluster Components
+- **Pods
+- **Nodes
+
+#### Pods
+- A Pod is a kubernetes abstraction that represents a group of one or more application containers and some shared resources for those containers
+   - Resources Include
+      - Shared storage, as Volumes
+      - Networking, as a unique cluster IP address
+      - Information about how to run each container, such as the container image version or specific ports to use
+- A Pod models an application-specific "logical host" and can contain different application containers which are relatively tightly coupled.
+- Pods are the atomic unit on the Kubernetes platform
+![Pods Diagram](https://d33wubrfki0l68.cloudfront.net/fe03f68d8ede9815184852ca2a4fd30325e5d15a/98064/docs/tutorials/kubernetes-basics/public/images/module_03_pods.svg)
+
+#### Nodes
+- A Pod always runs on a **node**. A ***Node*** is a worker machine in Kubernetes and may be either a virtual or a physical machine
+- Nodes are managed by master
+  - Kubernetes Node runs at least
+    - Kubelet (a process responsible for communication between the Kubernetes Master and the Node)
+    - A Container runtime (responsible for pulling, unpacking and running)
+    
+![Node Image](https://d33wubrfki0l68.cloudfront.net/5cb72d407cbe2755e581b6de757e0d81760d5b86/a9df9/docs/tutorials/kubernetes-basics/public/images/module_03_nodes.svg)
+
+#### Services in Kubernertes
+- A Service in Kubernetes is an abstraction which defines a logical set of Pods and a policy by which to access them
+- Services enable a loose coupling between dependent Pods. Although each Pod has a unique IP address, those IPs are not exposed outside the cluster without a Service.
+- Services allow your applications to receive traffic.
+- Services can be exposed in different ways by specifying a ***type*** in the ServiceSpec:
+   - ClusterIP (makes the Service only reachable from within the cluster)
+   - NodePort (Exposes the Service on the same port of each selected Node in the cluster using NAT)
+   - LoadBalancer (Creates an external load balancer in the current cloud)
+   - ExternalName (Exposes the Service using an arbitrary name (specified by externalName in the spec) by returning a CNAME record with the name. No proxy is used)
+
+![service_image](https://d33wubrfki0l68.cloudfront.net/cc38b0f3c0fd94e66495e3a4198f2096cdecd3d5/ace10/docs/tutorials/kubernetes-basics/public/images/module_04_services.svg)
+
+- Services are the abstraction that allow pods to die and replicate in Kubernetes without impacting your application.
+- Discovery and routing among dependent Pods (such as the frontend and backend components in an application) is handled by Kubernetes Services.
