@@ -47,3 +47,41 @@ Platform Owners - SRE's, Architects, platform owners in a orgnization
 
 ![Service Mesh](https://buoyant.io/wp-content/uploads/2017/04/linkerd-service-mesh-diagram-1024x587.png)
 
+
+## Architecture
+
+![Architecture Diagram](https://linkerd.io/images/architecture/control-plane.png)
+
+The **control plane** is a *set of services* that run in a dedicated namespace. These services accomplish various things—*aggregating telemetry data, providing a user-facing API, providing control data to the data plane proxies, etc.* Together, they drive the behavior of the data plane.
+
+The **data plane** consists of transparent proxies that are run next to each service instance. These proxies automatically handle all traffic to and from the service. Because they’re transparent, these proxies act as highly instrumented out-of-process network stacks, sending telemetry to, and receiving control signals from, the control plane.
+
+#### Control Plane
+
+The control plane is made up of:
+
+- Controller
+   - Consists of public-api container that provides an API for the CLI and Dashboard to interface with
+- Destination
+   - Each Proxy in the data plane uses this component to lookup where to send requests
+   - Used to fetch service profile information used for per-route metrics, retries and timeouts
+- Identity
+   - Provides Certificate Authority
+   - fectched by proxy on start and must be issued before the proxy becomes ready
+   - helps to implemet mTLS
+- Proxy Injector
+   - The injector is an [admission controller](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/), which receives a webhook request every time a pod is created. This injector inspects resources for a Linkerd-specific annotation (linkerd.io/inject: enabled)
+- Service Profile Validator
+- Tap
+- Web
+- Heartbeat
+- Grafana
+- Prometheus
+
+
+
+
+
+
+
+
