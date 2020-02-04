@@ -14,8 +14,8 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 ### 4. Test to ensure the version you installed is up-to-date:
 kubectl version
 
-### 5. curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
-  && chmod +x minikube
+### 5. sudo curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+  && sudo chmod +x minikube
   
 ### 6. Here’s an easy way to add the Minikube executable to your path:
 sudo mkdir -p /usr/local/bin/
